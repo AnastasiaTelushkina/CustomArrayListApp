@@ -99,6 +99,7 @@ public class CustomArrayList<T> {
         int index = indexOf(o);
         if (index > -1) {
             remove(index);
+            return true;
         }
         return false;
     }
@@ -128,13 +129,11 @@ public class CustomArrayList<T> {
      * Set t.
      *
      * @param index index of searched element
-     * @param t     new element
-     * @return new element in array
+     * @param t     new value
      */
-    public T set(int index, T t) {
+    public void set(int index, T t) {
         isIndexInRange(index);
         this.array[index] = t;
-        return this.array[index];
     }
 
     /**
