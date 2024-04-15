@@ -68,13 +68,13 @@ public class CustomArrayList<T> {
      */
     public boolean add(T t) {
         if (size < capacity) {
-            size++;
             array[size] = t;
         } else {
             this.capacity = (int) (capacity * 1.5);
             this.array = Arrays.copyOf(this.array, this.capacity);
             add(size, t);
         }
+        size++;
         return true;
     }
 
@@ -107,7 +107,9 @@ public class CustomArrayList<T> {
      * Clear.
      */
     public void clear() {
-        Arrays.fill(this.array, null);
+        this.capacity = 10;
+        this.size = 0;
+        this.array = (T[]) new Object[capacity];
     }
 
 
@@ -193,15 +195,6 @@ public class CustomArrayList<T> {
      * @param comparator the comparator used in comparison
      */
     public  void  sort(Comparator<T> comparator){
-        for (int j = 0; j < size; j++) {
-            for (int i = 1; i < size ; i++) {
-                int result = comparator.compare(this.array[i], this.array[i - 1]);
-                if(result < 0){
-                    T temp = this.array[i];
-                    this.array[i ] = this.array[i - 1];
-                    this.array[i - 1] = temp;
-                }
-            }
-        }
+        Arrays.sort( this.array, 0, size, comparator);
     }
 }
